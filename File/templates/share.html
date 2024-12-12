@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Share Link</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/share.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 File Share Link</h1>
+        <p>Share this link to let others download <strong>{{ filename }}</strong></p>
+        <div class="share-link">
+            {{ share_link }}
+        </div>
+        <button class="copy-btn" onclick="copyLink()">Copy Link</button>
+        <div class="expiration-note">
+            This link will expire in {{ expiration_days }} days
+        </div>
+    </div>
+
+    <script>
+        function copyLink() {
+            const link = '{{ share_link }}';
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>
